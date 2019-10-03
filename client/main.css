@@ -1,17 +1,4 @@
 body {
-  padding: 10px;
+  padding: 1em;
   font-family: sans-serif;
-}
-
-.mdc-text-field__input {
-  font-size: 2rem !important;
-  width: 300px;
-}
-
-.login-buttons-dropdown-align- {
-  font-size: 4rem !important;
-}
-
-.accounts-dialog {
-  font-size: 4rem !important;
 }

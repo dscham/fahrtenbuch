@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Typography} from "@rmwc/typography";
 import {withTracker} from 'meteor/react-meteor-data';
 import {Meteor} from 'meteor/meteor';
-import RefillsCollection, {insert} from '../../imports/api/collections/Refills';
+import RefillsCollection, {insert, Refill} from '../../imports/api/collections/Refills';
 import {TextField} from "@rmwc/textfield";
 import {
     DataTable,
@@ -58,49 +58,49 @@ class Refills extends Component<any, State> {
 
     render() {
         return (
-            <div style={{paddingBottom: '10rem'}}>
+            <div style={{paddingTop: '1em', paddingBottom: '5em'}}>
 
-                <Typography use="headline3" tag="h3">Tankstopps</Typography>
-                <Typography use="headline5" tag="p">Neu</Typography>
+                <Typography use="headline4" tag="h3">Tankstopps</Typography>
+                <Typography use="headline6" tag="p">Neu</Typography>
 
-                <TextField outlined name="date" label="Datum" type="date" onChange={this.formChange}
-                           value={this.state.date}/>
-                <TextField outlined name="amount" label="Liter" type="number" onChange={this.formChange}
-                           value={this.state.amount} style={{marginLeft: '5px'}}/>
+                <TextField outlined name="date" label="Datum" type="date" onChange={this.formChange}/>
+                <TextField outlined name="amount" label="Liter" type="tel" onChange={this.formChange} style={{marginLeft: '5px'}}/>
                 <br />
-                <TextField outlined name="driven" label="Kilometer" type="number" onChange={this.formChange}
-                           value={this.state.driven} style={{marginTop: '10px'}}/>
-                <TextField outlined name="price" label="Preis" type="number" onChange={this.formChange}
-                           value={this.state.price} style={{marginLeft: '5px', marginTop: '10px'}}/>
+                <TextField outlined name="driven" label="Kilometer" type="tel" onChange={this.formChange} style={{marginTop: '10px'}}/>
+                <TextField outlined name="price" label="Preis" type="tel" onChange={this.formChange} style={{marginLeft: '5px', marginTop: '10px'}}/>
                 <br/>
-                <Button raised label="Senden" onClick={this.save} style={{marginTop: '10px', fontSize: '2rem', padding: '2rem'}}/>
+                <Button raised label="Senden" onClick={this.save} style={{marginTop: '10px'}}/>
 
                 <Typography use="headline5" tag="p">Tankstopps</Typography>
                 <br/>
-                <DataTable>
-                    <DataTableContent>
-                        <DataTableHead>
-                            <DataTableRow>
-                                <DataTableHeadCell style={{fontSize: '2rem'}}>Datum</DataTableHeadCell>
-                                <DataTableHeadCell style={{fontSize: '2rem'}} alignEnd>Liter</DataTableHeadCell>
-                                <DataTableHeadCell style={{fontSize: '2rem'}} alignEnd>Kilometer</DataTableHeadCell>
-                                <DataTableHeadCell style={{fontSize: '2rem'}} alignEnd>Preis</DataTableHeadCell>
-                            </DataTableRow>
-                        </DataTableHead>
-                        <DataTableBody>
-                            {
-                                this.props.refills.map((refill, i) => {
-                                    return (<DataTableRow key={i}>
-                                        <DataTableCell style={{fontSize: '2rem'}}>{refill.date}</DataTableCell>
-                                        <DataTableCell style={{fontSize: '2rem'}} alignEnd>{refill.amount}l</DataTableCell>
-                                        <DataTableCell style={{fontSize: '2rem'}} alignEnd>{refill.driven}km</DataTableCell>
-                                        <DataTableCell style={{fontSize: '2rem'}} alignEnd>{refill.price}€</DataTableCell>
-                                    </DataTableRow>);
-                                })
-                            }
-                        </DataTableBody>
-                    </DataTableContent>
-                </DataTable>
+                {Meteor.userId() ?
+                    <DataTable>
+                        <DataTableContent>
+                            <DataTableHead>
+                                <DataTableRow>
+                                    <DataTableHeadCell>Datum</DataTableHeadCell>
+                                    <DataTableHeadCell alignEnd>Liter</DataTableHeadCell>
+                                    <DataTableHeadCell alignEnd>Kilometer</DataTableHeadCell>
+                                    <DataTableHeadCell alignEnd>Preis</DataTableHeadCell>
+                                </DataTableRow>
+                            </DataTableHead>
+                            <DataTableBody>
+                                {
+                                    this.props.refills.map((refill: Refill, i: number) => {
+                                        return (<DataTableRow key={i}>
+                                            <DataTableCell>{refill.date}</DataTableCell>
+                                            <DataTableCell alignEnd>{refill.amount}l</DataTableCell>
+                                            <DataTableCell alignEnd>{refill.driven}km</DataTableCell>
+                                            <DataTableCell alignEnd>{refill.price}€</DataTableCell>
+                                        </DataTableRow>);
+                                    })
+                                }
+                            </DataTableBody>
+                        </DataTableContent>
+                    </DataTable>
+                    :
+                    null
+                }
             </div>
         );
     }

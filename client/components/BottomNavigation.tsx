@@ -19,16 +19,16 @@ interface MenuItem {
 export default class BottomNavigation extends React.Component<Props, {}> {
     barStyle: CSSProperties = {
         position: 'fixed',
+        display: 'flex',
         left: 0,
         bottom: 0,
         width: '100vw',
         zIndex: 10,
-        paddingBottom: '2rem',
-        paddingTop: '2rem',
-        textAlign: 'left',
-        display: "flex",
+        paddingBottom: '1.5rem',
+        paddingTop: '.75rem',
+        textAlign: 'center',
         boxShadow: '0px -1px 5px 0px rgba(0,0,0,0.75)',
-        background: 'white'
+        background: 'white',
     };
 
     render() {

@@ -6,6 +6,7 @@ import Refills from "./pages/Refills";
 import Cars from "./pages/Cars";
 import Drives from "./pages/Drives";
 import AccountsUIWrapper from "./components/AccountsUIWrapper";
+import Header from "./components/Header";
 
 interface State {
     page: string
@@ -52,7 +53,7 @@ export default class App extends Component<any, State> {
     render() {
         return (
             <div>
-                <AccountsUIWrapper />
+                <Header />
                 <br />
                 {this.getPage()}
                 <BottomNavigation callback={this.changePage} current-page={this.state.page} items={this.menuItems}/>

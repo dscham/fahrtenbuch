@@ -14,22 +14,20 @@ interface Props {
 export default class BottomNavigationItem extends React.Component<Props, {}> {
 
     divStyle: CSSProperties = {
-        width: '25%',
         textAlign: "center",
         cursor: 'pointer',
-        borderLeft: '1px solid black',
+        flexGrow: 1,
     };
 
     activeDivStyle: CSSProperties = {
-        width: '25%',
         textAlign: "center",
         cursor: 'pointer',
-        borderLeft: '1px solid black',
+        flexGrow: 1,
         color: 'limegreen'
     };
 
     iconStyle: CSSProperties = {
-        fontSize: '3rem',
+        fontSize: '1.5rem',
     };
 
     render() {
