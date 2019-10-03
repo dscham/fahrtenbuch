@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Typography} from '@rmwc/typography';
 import BottomNavigation from "./components/BottomNavigation";
 import Home from "./pages/Home";
-import Gasups from "./pages/Gasups";
+import Refills from "./pages/Refills";
 import Cars from "./pages/Cars";
 import Drives from "./pages/Drives";
 import AccountsUIWrapper from "./components/AccountsUIWrapper";
@@ -12,7 +12,7 @@ interface State {
 }
 
 export default class App extends Component<any, State> {
-    readonly state = { page: 'gasups' };
+    readonly state = { page: 'refills' };
 
     constructor(props: any) {
         super(props);
@@ -32,8 +32,8 @@ export default class App extends Component<any, State> {
                 return <Home />;
             case 'cars':
                 return <Cars />;
-            case 'gasups':
-                return <Gasups />;
+            case 'refills':
+                return <Refills />;
             case 'drives':
                 return <Drives />;
             default:
@@ -43,7 +43,7 @@ export default class App extends Component<any, State> {
 
     private menuItems = [
         {
-            page: 'gasups',
+            page: 'refills',
             title: 'Tankstopps',
             icon: 'local_gas_station',
         }

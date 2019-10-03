@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Typography} from "@rmwc/typography";
 import {withTracker} from 'meteor/react-meteor-data';
 import {Meteor} from 'meteor/meteor';
-import GasupsCollection, {insert} from '../../imports/api/collections/Gasups';
+import RefillsCollection, {insert} from '../../imports/api/collections/Refills';
 import {TextField} from "@rmwc/textfield";
 import {
     DataTable,
@@ -23,7 +23,7 @@ interface State {
     price: number
 }
 
-class Gasups extends Component<any, State> {
+class Refills extends Component<any, State> {
     readonly state = {
         date: "",
         amount: 0,
@@ -89,12 +89,12 @@ class Gasups extends Component<any, State> {
                         </DataTableHead>
                         <DataTableBody>
                             {
-                                this.props.gasups.map((gasup, i) => {
+                                this.props.refills.map((refill, i) => {
                                     return (<DataTableRow key={i}>
-                                        <DataTableCell style={{fontSize: '2rem'}}>{gasup.date}</DataTableCell>
-                                        <DataTableCell style={{fontSize: '2rem'}} alignEnd>{gasup.amount}l</DataTableCell>
-                                        <DataTableCell style={{fontSize: '2rem'}} alignEnd>{gasup.driven}km</DataTableCell>
-                                        <DataTableCell style={{fontSize: '2rem'}} alignEnd>{gasup.price}€</DataTableCell>
+                                        <DataTableCell style={{fontSize: '2rem'}}>{refill.date}</DataTableCell>
+                                        <DataTableCell style={{fontSize: '2rem'}} alignEnd>{refill.amount}l</DataTableCell>
+                                        <DataTableCell style={{fontSize: '2rem'}} alignEnd>{refill.driven}km</DataTableCell>
+                                        <DataTableCell style={{fontSize: '2rem'}} alignEnd>{refill.price}€</DataTableCell>
                                     </DataTableRow>);
                                 })
                             }
@@ -107,9 +107,9 @@ class Gasups extends Component<any, State> {
 }
 
 export default withTracker(() => {
-    const handle = Meteor.subscribe('gasups');
+    const handle = Meteor.subscribe('refills');
     return {
         loading: !handle.ready(),
-        gasups: GasupsCollection.find().fetch()
+        refills: RefillsCollection.find().fetch()
     };
-})(Gasups);
+})(Refills);

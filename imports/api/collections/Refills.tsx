@@ -2,16 +2,16 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 
-class GasupsCollection extends Mongo.Collection {
+class RefillsCollection extends Mongo.Collection {
     constructor(collectionName: string) {
         super(collectionName)
     };
 }
 
-const Gasups = new GasupsCollection('gasups');
-export default Gasups;
+const Refills = new RefillsCollection('refills');
+export default Refills;
 
-export interface Gasup {
+export interface Refill {
     userId: string,
     date: string,
     amount: number,
@@ -20,7 +20,7 @@ export interface Gasup {
 }
 
 export const insert = {
-    name: 'gasups.insert',
+    name: 'refills.insert',
 
     // Factor out validation so that it can be run independently (1)
     validate(args: any) {
@@ -34,8 +34,8 @@ export const insert = {
     },
 
     // Factor out Method body so that it can be called independently (3)
-    run(gasup: Gasup) {
-        Gasups.insert(gasup);
+    run(refill: Refill) {
+        Refills.insert(refill);
     },
 
     // Call Method by referencing the JS object (4)
@@ -54,16 +54,16 @@ export const insert = {
 
 if(Meteor.isServer) {
     Meteor.methods({
-        [insert.name]: function (gasup: Gasup) {
-            insert.validate.call(this, gasup);
-            insert.run.call(this, gasup);
+        [insert.name]: function (refill: Refill) {
+            insert.validate.call(this, refill);
+            insert.run.call(this, refill);
         }
     });
 
     Meteor.publish(
-        'gasups', () => {
+        'refills', () => {
             if(!!Meteor.user()) {
-                return Gasups.find({userId: Meteor.userId()});
+                return Refills.find({userId: Meteor.userId()});
             }
         }
     );
