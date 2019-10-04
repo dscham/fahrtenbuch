@@ -4,7 +4,9 @@ import {Typography} from "@rmwc/typography";
 export default class Cars extends Component {
     render() {
         return(
-            <Typography use="headline1">Cars</Typography>
+            <div className="page-body">
+                <Typography use="headline4" tag="h3">Autos</Typography>
+            </div>
         );
     }
 }

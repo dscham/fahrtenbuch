@@ -1,8 +1,10 @@
 import React, {Component} from "react";
 import {Typography} from "@rmwc/typography";
+//@ts-ignore
 import {withTracker} from 'meteor/react-meteor-data';
+//@ts-ignore
 import {Meteor} from 'meteor/meteor';
-import RefillsCollection, {insert, Refill} from '../../imports/api/collections/Refills';
+import RefillsCollection, {insert, Refill} from '../../../imports/api/collections/Refills';
 import {TextField} from "@rmwc/textfield";
 import {
     DataTable,
@@ -14,7 +16,10 @@ import {
     DataTableRow
 } from "@rmwc/data-table";
 import {Button} from "@rmwc/button";
+import {Fab} from "@rmwc/fab";
 import '@rmwc/data-table/data-table.css';
+import FloatingActionButton from "../../components/floating-action-button/FloatingActionButton";
+import './style.scss'
 
 interface State {
     date: string,
@@ -39,8 +44,10 @@ class Refills extends Component<any, State> {
         this.save = this.save.bind(this);
     }
 
+    //@ts-ignore
     formChange(e) {
         e.persist();
+        //@ts-ignore
         this.setState({[e.target.name]: e.target.value});
     }
 
@@ -48,8 +55,11 @@ class Refills extends Component<any, State> {
         insert.call({
             userId: Meteor.userId(),
             date: this.state.date,
+            //@ts-ignore
             amount: parseFloat(this.state.amount),
+            //@ts-ignore
             driven: parseFloat(this.state.driven),
+            //@ts-ignore
             price: parseFloat(this.state.price)
         }, () => {
 
@@ -58,21 +68,8 @@ class Refills extends Component<any, State> {
 
     render() {
         return (
-            <div style={{paddingTop: '1em', paddingBottom: '5em'}}>
-
+            <div className="page-body">
                 <Typography use="headline4" tag="h3">Tankstopps</Typography>
-                <Typography use="headline6" tag="p">Neu</Typography>
-
-                <TextField outlined name="date" label="Datum" type="date" onChange={this.formChange}/>
-                <TextField outlined name="amount" label="Liter" type="tel" onChange={this.formChange} style={{marginLeft: '5px'}}/>
-                <br />
-                <TextField outlined name="driven" label="Kilometer" type="tel" onChange={this.formChange} style={{marginTop: '10px'}}/>
-                <TextField outlined name="price" label="Preis" type="tel" onChange={this.formChange} style={{marginLeft: '5px', marginTop: '10px'}}/>
-                <br/>
-                <Button raised label="Senden" onClick={this.save} style={{marginTop: '10px'}}/>
-
-                <Typography use="headline5" tag="p">Tankstopps</Typography>
-                <br/>
                 {Meteor.userId() ?
                     <DataTable>
                         <DataTableContent>
@@ -101,6 +98,7 @@ class Refills extends Component<any, State> {
                     :
                     null
                 }
+                <Fab icon="add" label="Neu" style={{position: 'fixed', bottom: '7.5em', right: '1.5em'}} />
             </div>
         );
     }
@@ -110,6 +108,7 @@ export default withTracker(() => {
     const handle = Meteor.subscribe('refills');
     return {
         loading: !handle.ready(),
+        //@ts-ignore
         refills: RefillsCollection.find().fetch()
     };
 })(Refills);

@@ -1,6 +1,7 @@
 import React, { CSSProperties } from "react";
 import { Button } from '@rmwc/button';
-import BottomNavigationItem from "./BottomNavigationItem";
+import BottomNavigationItem from "../item/BottomNavigationItem";
+import './style.scss';
 // @ts-ignore
 import PropTypes from 'prop-types';
 
@@ -16,24 +17,11 @@ interface MenuItem {
     icon: string,
 }
 
-export default class BottomNavigation extends React.Component<Props, {}> {
-    barStyle: CSSProperties = {
-        position: 'fixed',
-        display: 'flex',
-        left: 0,
-        bottom: 0,
-        width: '100vw',
-        zIndex: 10,
-        paddingBottom: '1.5rem',
-        paddingTop: '.75rem',
-        textAlign: 'center',
-        boxShadow: '0px -1px 5px 0px rgba(0,0,0,0.75)',
-        background: 'white',
-    };
+export default class BottomNavigationBar extends React.Component<Props, {}> {
 
     render() {
         return (
-            <div style={this.barStyle}>
+            <div className="bottom-navigation">
                 {
                     this.props.items.map((item, i) => {
                         return (

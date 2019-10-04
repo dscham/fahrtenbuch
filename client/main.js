@@ -4,7 +4,6 @@ import { render } from 'react-dom';
 import App from './App';
 import './main.html';
 import '../node_modules/material-components-web/dist/material-components-web.min.css';
-import '../imports/startup/accounts-config.js';
 
 Meteor.startup(() => {
   render(<App />, document.getElementById('app'));

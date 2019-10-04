@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import {Typography} from '@rmwc/typography';
-import BottomNavigation from "./components/BottomNavigation";
-import Home from "./pages/Home";
-import Refills from "./pages/Refills";
-import Cars from "./pages/Cars";
-import Drives from "./pages/Drives";
-import AccountsUIWrapper from "./components/AccountsUIWrapper";
-import Header from "./components/Header";
+import BottomNavigationBar from "./components/bottom-navigation/bar/BottomNavigationBar";
+import Refills from "./pages/refills/Refills";
+import Cars from "./pages/cars/Cars";
+import Stats from "./pages/stats/Stats";
+import Header from "./components/header/Header";
 
 interface State {
     page: string
@@ -29,14 +27,12 @@ export default class App extends Component<any, State> {
 
     private getPage() {
         switch (this.state.page) {
-            case 'home':
-                return <Home />;
             case 'cars':
                 return <Cars />;
             case 'refills':
                 return <Refills />;
-            case 'drives':
-                return <Drives />;
+            case 'stats':
+                return <Stats />;
             default:
                 return null;
         }
@@ -47,6 +43,19 @@ export default class App extends Component<any, State> {
             page: 'refills',
             title: 'Tankstopps',
             icon: 'local_gas_station',
+
+        },
+        {
+            page: 'cars',
+            title: 'Autos',
+            icon: 'directions_car',
+
+        },
+        {
+            page: 'stats',
+            title: 'Statistiken',
+            icon: 'bar_chart',
+
         }
     ];
 
@@ -56,7 +65,7 @@ export default class App extends Component<any, State> {
                 <Header />
                 <br />
                 {this.getPage()}
-                <BottomNavigation callback={this.changePage} current-page={this.state.page} items={this.menuItems}/>
+                <BottomNavigationBar callback={this.changePage} current-page={this.state.page} items={this.menuItems}/>
             </div>
         )
     }

@@ -1,0 +1,13 @@
+.bottom-navigation {
+  position: fixed;
+  display: flex;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  z-index: 10;
+  padding-bottom: 1.5rem;
+  padding-top: .75rem;
+  text-align: center;
+  box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.75);
+  background: white;
+}

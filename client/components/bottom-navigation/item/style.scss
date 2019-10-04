@@ -1,0 +1,12 @@
+.bottom-navigation-item {
+  text-align: center;
+  cursor: pointer;
+  flex-grow: 1;
+
+  &.active {
+    color: limegreen;
+  }
+  .icon {
+    font-size: 1.5em;
+  }
+}
