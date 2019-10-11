@@ -6,8 +6,6 @@ import './style.scss';
 import PropTypes from 'prop-types';
 
 interface Props {
-    callback: Function,
-    "current-page": string,
     items: MenuItem[]
 }
 
@@ -29,9 +27,7 @@ export default class BottomNavigationBar extends React.Component<Props, {}> {
                                 key={i}
                                 icon={item.icon}
                                 caption={item.title}
-                                onClick={this.props.callback}
-                                navigate={item.page}
-                                active={this.props["current-page"] == item.page}/>
+                                navigate={item.page}/>
                         );
                     })
                 }

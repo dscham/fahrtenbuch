@@ -25,3 +25,4 @@ templating
 react-meteor-data
 fourseven:scss
 accounts-google
+accounts-ui

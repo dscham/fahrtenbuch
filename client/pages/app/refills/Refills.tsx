@@ -4,7 +4,7 @@ import {Typography} from "@rmwc/typography";
 import {withTracker} from 'meteor/react-meteor-data';
 //@ts-ignore
 import {Meteor} from 'meteor/meteor';
-import RefillsCollection, {insert, Refill} from '../../../imports/api/collections/Refills';
+import RefillsCollection, {insert, Refill} from '../../../../imports/api/collections/Refills';
 import {TextField} from "@rmwc/textfield";
 import {
     DataTable,
@@ -68,7 +68,7 @@ class Refills extends Component<any, State> {
 
     render() {
         return (
-            <div className="page-body">
+            <div>
                 <Typography use="headline4" tag="h3">Tankstopps</Typography>
                 {Meteor.userId() ?
                     <DataTable>
