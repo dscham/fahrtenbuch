@@ -13,7 +13,11 @@ interface Props {
     icon: string
 }
 
-export default class BottomNavigationItem extends React.Component<Props, {}> {
+interface State {
+
+}
+
+export default class BottomNavigationItem extends React.Component<Props, State> {
     private activeClasses = {
         "bottom-navigation-item": true,
         "active": true

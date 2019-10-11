@@ -7,11 +7,15 @@ import Stats from "../app/stats/Stats";
 import Header from "../../components/header/Header";
 import AccountsUIWrapper from "../../components/accounts/AccountsUIWrapper";
 
+interface Props {
+
+}
+
 interface State {
 
 }
 
-export default class Login extends Component<any, State> {
+export default class Login extends Component<Props, State> {
     readonly state = {};
 
     constructor(props: any) {

@@ -21,6 +21,10 @@ import '@rmwc/data-table/data-table.css';
 import FloatingActionButton from "../../components/floating-action-button/FloatingActionButton";
 import './style.scss'
 
+interface Props {
+
+}
+
 interface State {
     date: string,
     amount: number,
@@ -28,7 +32,7 @@ interface State {
     price: number
 }
 
-class Refills extends Component<any, State> {
+class Refills extends Component<Props, State> {
     readonly state = {
         date: "",
         amount: 0,

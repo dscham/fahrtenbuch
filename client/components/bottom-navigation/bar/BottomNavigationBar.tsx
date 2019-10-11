@@ -9,13 +9,17 @@ interface Props {
     items: MenuItem[]
 }
 
+interface State {
+
+}
+
 interface MenuItem {
     page: string,
     title: string,
     icon: string,
 }
 
-export default class BottomNavigationBar extends React.Component<Props, {}> {
+export default class BottomNavigationBar extends React.Component<Props, State> {
 
     render() {
         return (

@@ -8,11 +8,15 @@ import Header from "../../components/header/Header";
 import {Route, Switch, Redirect} from 'react-router-dom';
 import {withTracker} from "meteor/react-meteor-data";
 
+interface Props {
+
+}
+
 interface State {
     page: string
 }
 
-class App extends Component<any, State> {
+class App extends Component<Props, State> {
     readonly state = { page: 'refills' };
 
     constructor(props: any) {

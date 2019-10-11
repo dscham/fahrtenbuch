@@ -4,13 +4,21 @@ import {Meteor} from 'meteor/meteor';
 import {Menu, MenuItem, MenuSurfaceAnchor} from "@rmwc/menu"
 import {IconButton} from "@rmwc/icon-button";
 
-export default class UserMenu extends React.Component {
+interface Props {
+
+}
+
+interface State {
+    open: boolean
+}
+
+export default class UserMenu extends React.Component<Props, State> {
+    readonly state = {
+        open: false
+    }
+
     constructor(props) {
         super(props);
-
-        this.state = {
-            open: false
-        }
 
         this.setOpen = this.setOpen.bind(this);
     }

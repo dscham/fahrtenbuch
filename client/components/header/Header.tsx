@@ -1,14 +1,19 @@
-import React, {CSSProperties} from "react";
+import React from "react";
 import {Meteor} from 'meteor/meteor';
 // @ts-ignore
 import {Typography} from "@rmwc/typography";
 import './style.scss';
 import UserMenu from "./user-menu/UserMenu";
 
-export default class Header extends React.Component {
-    barStyle: CSSProperties = {
+interface Props {
 
-    };
+}
+
+interface State {
+
+}
+
+export default class Header extends React.Component<Props, State> {
 
     render() {
         return (

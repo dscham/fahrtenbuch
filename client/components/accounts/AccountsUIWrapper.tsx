@@ -1,11 +1,18 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import ReactDOM from 'react-dom';
 import { Template } from 'meteor/templating';
 import { Blaze } from 'meteor/blaze';
 import classNames from 'classnames';
 
+interface Props {
 
-export default class AccountsUIWrapper extends Component {
+}
+
+interface State {
+
+}
+
+export default class AccountsUIWrapper extends React.Component<Props, State> {
 
     componentDidMount() {
         // Use Meteor Blaze to render login buttons

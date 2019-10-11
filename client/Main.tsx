@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,9 +11,15 @@ import App from "./pages/app/App";
 import {withTracker} from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
 
-interface State {}
+interface Props {
 
-class Main extends Component  {
+}
+
+interface State {
+
+}
+
+class Main extends React.Component<Props, State>  {
 
     render() {
         return (
