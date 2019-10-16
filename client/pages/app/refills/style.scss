@@ -1,6 +1,55 @@
-.new-refill {
+#refill-form-sheet {
   position: fixed;
   display: block;
-  bottom: 6em;
-  right: 2em;
+  bottom: 0;
+  left: 0;
+  padding: 1em;
+  margin-bottom: 5.4em;
+  width: 100vw;
+
+  transition: .5s;
+
+  &.closed {
+    box-shadow: 0 0 0 0 #fff;
+
+    height: 3em;
+    transition: .5s;
+  }
+
+  &.open {
+    background: white;
+    height: calc(50vh - 5.4em);
+    box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.75);
+    transition: .5s;
+    overflow-y: scroll;
+  }
+
+  #new-refill-button {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  //TODO: Rework and make responsive
+  #refill-form {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+
+    .mdc-button {
+      align-self: flex-end;
+      display: block;
+    }
+
+    .mdc-text-field {
+      margin: 1em;
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, CSSProperties} from "react";
 import {Typography} from "@rmwc/typography";
 //@ts-ignore
 import {withTracker} from 'meteor/react-meteor-data';
@@ -29,7 +29,8 @@ interface State {
     date: string,
     amount: number,
     driven: number,
-    price: number
+    price: number,
+    formOpen: boolean
 }
 
 class Refills extends Component<Props, State> {
@@ -37,15 +38,16 @@ class Refills extends Component<Props, State> {
         date: "",
         amount: 0,
         driven: 0,
-        price: 0
+        price: 0,
+        formOpen: false
     };
-
     constructor(props: any) {
         super(props);
 
 
         this.formChange = this.formChange.bind(this);
         this.save = this.save.bind(this);
+        this.showFormClicked = this.showFormClicked.bind(this);
     }
 
     //@ts-ignore
@@ -70,6 +72,21 @@ class Refills extends Component<Props, State> {
         });
     }
 
+    showForm(formOpen: boolean): CSSProperties {
+        return formOpen ? {visibility: 'visible', display: 'flex'} : {visibility: 'hidden', display: 'none'};
+    }
+
+    showFormClicked() {
+        this.setState({
+            ...this.state,
+            formOpen: !this.state.formOpen
+        });
+    }
+
+    getClassForForm(): string {
+        return this.state.formOpen ? 'open' : 'closed';
+    }
+
     render() {
         return (
             <div>
@@ -92,7 +109,7 @@ class Refills extends Component<Props, State> {
                                             <DataTableCell>{refill.date}</DataTableCell>
                                             <DataTableCell alignEnd>{refill.amount}l</DataTableCell>
                                             <DataTableCell alignEnd>{refill.driven}km</DataTableCell>
-                                            <DataTableCell alignEnd>{refill.price}€</DataTableCell>
+                                            <DataTableCell alignEnd>{refill.price.toFixed(2)}€</DataTableCell>
                                         </DataTableRow>);
                                     })
                                 }
@@ -102,7 +119,19 @@ class Refills extends Component<Props, State> {
                     :
                     null
                 }
-                <Fab icon="add" label="Neu" style={{position: 'fixed', bottom: '7.5em', right: '1.5em'}} />
+                <div id="refill-form-sheet" className={this.getClassForForm()}>
+                    <div id="new-refill-button" >
+                        <Fab icon="close" onClick={this.showFormClicked} style={this.showForm(this.state.formOpen)} />
+                        <Fab icon="add" label="Neu" onClick={this.showFormClicked} style={this.showForm(!this.state.formOpen)}/>
+                    </div>
+                    <div id="refill-form" style={this.showForm(this.state.formOpen)}>
+                        <TextField name="date" label="Datum" type="date" onChange={this.formChange}/>
+                        <TextField name="amount" label="Liter" type="tel" onChange={this.formChange}/>
+                        <TextField name="driven" label="Kilometer" type="tel" onChange={this.formChange}/>
+                        <TextField name="price" label="Preis" type="tel" onChange={this.formChange}/>
+                        <Button raised label="Speichern" onClick={this.save}  style={this.showForm(this.state.formOpen)}/>
+                    </div>
+                </div>
             </div>
         );
     }
